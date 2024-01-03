@@ -22,7 +22,6 @@ export default function AdminPage() {
       })
       .catch((err) => {
         message.error(err.response.data.content);
-        fetchListUser();
       });
   };
 
