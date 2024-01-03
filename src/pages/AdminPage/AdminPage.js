@@ -6,23 +6,27 @@ import "./AdminPage.css";
 export default function AdminPage() {
   const [listUser, setListUser] = useState([]);
 
-  const fetchListUser = () => {
-    https
-      .get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00")
-      .then((res) => setListUser(res.data.content))
-      .catch((err) => console.log(err));
+  const fetchListUser = async () => {
+    try {
+      let res = await https.get(
+        "/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00"
+      );
+      setListUser(res.data.content);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleDelete = (id) => {
-    https
-      .delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
-      .then((res) => {
-        message.success(res.data.content);
-        fetchListUser();
-      })
-      .catch((err) => {
-        message.error(err.response.data.content);
-      });
+  const handleDelete = async (id) => {
+    try {
+      let res = await https.delete(
+        `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`
+      );
+      message.success(res.data.content);
+      fetchListUser();
+    } catch (err) {
+      message.error(err.response.data.content);
+    }
   };
 
   useEffect(() => {
