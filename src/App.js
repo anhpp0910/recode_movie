@@ -3,11 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import Layout from "./layout/Layout";
 import Spinner from "./components/Spinner/Spinner";
-import AdminPage from "./pages/AdminPage/AdminPage";
-import AdminLayout from "./layout/AdminLayout";
-import SecureGate from "./layout/SecureGate";
+import TicketRoomPage from "./pages/TicketRoomPage/TicketRoomPage";
 
 function App() {
   return (
@@ -18,21 +17,14 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/detail/:maPhim" element={<DetailPage />} />
-          </Route>
-
-          {/* admin */}
-          <Route
-            path="/admin"
-            element={
-              <SecureGate>
-                <AdminLayout />
-              </SecureGate>
-            }
-          >
-            <Route path="/admin" element={<AdminPage />} />
+            <Route
+              path="/ticketroom/:maLichChieu"
+              element={<TicketRoomPage />}
+            />
           </Route>
 
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </>

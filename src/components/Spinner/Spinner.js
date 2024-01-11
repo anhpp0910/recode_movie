@@ -20,7 +20,7 @@ export default function Spinner() {
         alignItems: "center",
       }}
     >
-      <MoonLoader color="#3a0ca3" loading size="120" speedMultiplier="0.5" />
+      <MoonLoader color="#3a0ca3" loading size="120px" speedMultiplier="0.5" />
     </div>
   ) : (
     <></>

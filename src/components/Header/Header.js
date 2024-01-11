@@ -7,11 +7,15 @@ export default function Header() {
   let { user } = useSelector((state) => state.userSlice);
   let navigate = useNavigate();
 
-  let handleToLoginPage = () => {
+  const handleToLoginPage = () => {
     navigate("/login");
   };
 
-  let handleLogout = () => {
+  const handleToRegisterPage = () => {
+    navigate("/register");
+  };
+
+  const handleLogout = () => {
     // xoá localStorage
     localStorage.removeItem("USER_INFO");
     window.location.reload();
@@ -35,15 +39,17 @@ export default function Header() {
           <button className={cssBtn} onClick={handleToLoginPage}>
             Đăng nhập
           </button>
-          <button className={cssBtn}>Đăng ký</button>
+          <button className={cssBtn} onClick={handleToRegisterPage}>
+            Đăng ký
+          </button>
         </>
       );
     }
   };
 
   return (
-    <div className="h-28">
-      <div className="shadow-md bg-white fixed top-0 w-full z-50">
+    <div className="h-24">
+      <div className="shadow-lg bg-white fixed top-0 w-full z-50">
         <div className="container h-24 flex justify-around items-center">
           <NavLink to="/" className="text-4xl font-bold text-purple-700">
             MyCine

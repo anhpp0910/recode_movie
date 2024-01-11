@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { https } from "../../service/api";
 import { Card, Tooltip } from "antd";
+import { Rate } from "antd";
 import { NavLink } from "react-router-dom";
-const { Meta } = Card;
 
 export default function ListMovie() {
   const [movieArr, setMovieArr] = useState([]);
@@ -15,9 +15,9 @@ export default function ListMovie() {
   }, []);
 
   const renderMovie = () => {
-    return movieArr.map((movie) => {
+    return movieArr.map((movie, index) => {
       return (
-        <Tooltip title={movie.tenPhim.toUpperCase()}>
+        <Tooltip key={index} title={movie.tenPhim.toUpperCase()}>
           <Card
             key={movie.maPhim}
             hoverable
@@ -32,7 +32,12 @@ export default function ListMovie() {
               />
             }
           >
-            <Meta title={movie.tenPhim.toUpperCase()} />
+            <h1 className="text-center text-xl font-medium text-purple-700">
+              {movie.tenPhim}
+            </h1>
+            <div className="text-center my-5">
+              <Rate disabled allowHalf value={movie.danhGia / 2} />
+            </div>
             <NavLink
               to={`/detail/${movie.maPhim}`}
               className="flex justify-center mt-4"
@@ -47,5 +52,5 @@ export default function ListMovie() {
     });
   };
 
-  return <div className="grid grid-cols-5 gap-10">{renderMovie()}</div>;
+  return <div className="grid grid-cols-4 gap-12">{renderMovie()}</div>;
 }
