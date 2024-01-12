@@ -1,7 +1,24 @@
 import React from "react";
 import "./Screen.css";
+import { useDispatch } from "react-redux";
+import {
+  addToDsGheBanChon,
+  addDanhSachVe,
+  getThongTinMaLichChieu,
+} from "../../../redux/ticketSlice";
 
-export default function Screen({ danhSachGhe }) {
+export default function Screen({ danhSachGhe, thongTinPhim }) {
+  console.log(danhSachGhe);
+  console.log(thongTinPhim);
+  // Đẩy data lên redux => useDispatch
+  // Handle khi click chọn ghế
+  let dispatch = useDispatch();
+  let handleClickOnSeat = (ghe) => {
+    dispatch(addToDsGheBanChon(ghe));
+    dispatch(getThongTinMaLichChieu(thongTinPhim.maLichChieu));
+    dispatch(addDanhSachVe({ maGhe: ghe.maGhe, giaVe: ghe.giaVe }));
+  };
+
   return (
     <div className="screen bg-gray-800 grid grid-cols-subgrid col-span-3">
       <h3 className="manHinh py-12 text-center text-white text-md font-medium">
@@ -18,6 +35,7 @@ export default function Screen({ danhSachGhe }) {
               className={"text-white ghe " + loaiGhe + " " + daDat}
               onClick={(e) => {
                 e.target.classList.toggle("gheBanChon");
+                handleClickOnSeat(ghe);
               }}
             >
               {ghe.tenGhe}
@@ -49,5 +67,3 @@ export default function Screen({ danhSachGhe }) {
     </div>
   );
 }
-
-// giaVe

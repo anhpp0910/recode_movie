@@ -22,7 +22,7 @@ export default function TicketRoomPage() {
 
   return (
     <div className="grid grid-cols-5">
-      <Screen danhSachGhe={danhSachGhe} />
+      <Screen danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim} />
       <TicketInfo danhSachGhe={danhSachGhe} thongTinPhim={thongTinPhim} />
     </div>
   );

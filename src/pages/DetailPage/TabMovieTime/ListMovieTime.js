@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import { Card } from "antd";
 import { NavLink } from "react-router-dom";
 
 export default function List({ dsCumRapChieu }) {

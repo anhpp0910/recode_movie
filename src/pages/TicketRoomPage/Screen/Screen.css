@@ -1,3 +1,7 @@
+.screen {
+  max-height: 608px;
+}
+
 .screen .manHinh {
   position: relative;
 }
